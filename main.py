@@ -1,13 +1,45 @@
 import requests
 
-response = requests.get('https://wttr.in/san%20francisco?nTqu&lang=en')
-print (response.text)
+def get_weather(city, params=None):
+    response = requests.get("https://wttr.in/" + city, params=params)
 
-response = requests.get('https://wttr.in/svo')
-print (response.text)
+    try:
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as e:
+        print("Error: " + str(e))
+        return
+    print(response.text)
 
-response = requests.get('https://wttr.in/london')
-print(response.text)
 
-response = requests.get('https://wttr.in/череповец?m&m&lang=ru&M&n&q&T' )
-print(response.text)
+if __name__ == '__main__':
+    weatherUrls = [
+        {
+            "city": "san%20francisco",
+            "params": {'nTqu': "",
+                       "lang": "ru", }
+        },
+        {
+            "city": "svo",
+            "params": {'nTqu': "",
+                       "lang": "ru", }
+        },
+        {
+            "city": "london",
+            "params": {'nTqu': "",
+                       "lang": "ru", }
+        },
+        {
+            "city": "череповец",
+            "params": {"m": "",
+                       "lang": "ru",
+                       "M": "",
+                       "n": "",
+                       "q": "",
+                       "T": ""
+                       }
+        }
+    ]
+
+    for url in weatherUrls:
+        get_weather(url["city"], url["params"])
+        pass
