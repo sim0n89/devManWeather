@@ -2,14 +2,14 @@ import requests
 
 
 def get_weather(city, params=None):
-    response = requests.get("https://wttr.in/" + city, params=params)
-
     try:
+        response = requests.get("https://wttr.in/" + city, params=params)
         response.raise_for_status()
-    except requests.exceptions.HTTPError as e:
+        print(response.text)
+    except Exception as e:
         print("Error: " + str(e))
         return
-    print(response.text)
+
 
 
 if __name__ == '__main__':
