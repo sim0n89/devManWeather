@@ -1,5 +1,6 @@
 import requests
 
+
 def get_weather(city, params=None):
     response = requests.get("https://wttr.in/" + city, params=params)
 
