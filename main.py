@@ -16,6 +16,6 @@ if __name__ == '__main__':
               "q": "",
               "T": ""
               }
-    citys = ["san%20francisco", "svo", "london", "череповец", ]
+    citys = ["svo", "london", "череповец", ]
     for city in citys:
         get_weather(city, params)
